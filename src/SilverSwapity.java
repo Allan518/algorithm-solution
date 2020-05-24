@@ -9,31 +9,31 @@ public class SilverSwapity {
         int totalCows = Integer.parseInt(st.nextToken());
         int totalPairsForReversal = Integer.parseInt(st.nextToken());
         int repeatTimes = Integer.parseInt(st.nextToken());
-        int[] afterRoundOneCowsArray = new int[totalCows];
-        int[] currentCowsArray = new int[totalCows];
-        for (int i = 0; i < totalCows; i++) currentCowsArray[i] = i;
+        int[] currentRowArrays = new int[totalCows];
+        int[] beginningCowsArray = new int[totalCows];
+        for (int i = 0; i < totalCows; i++) beginningCowsArray[i] = i;
         while (totalPairsForReversal-- > 0) {
             st = new StringTokenizer(br.readLine());
             int LowerEndOfPairsForReversal = Integer.parseInt(st.nextToken()) - 1;
             int HigherEndOfPairsForReversal = Integer.parseInt(st.nextToken()) - 1;
             while (LowerEndOfPairsForReversal < HigherEndOfPairsForReversal) {
-                int t = currentCowsArray[LowerEndOfPairsForReversal];
-                currentCowsArray[LowerEndOfPairsForReversal] = currentCowsArray[HigherEndOfPairsForReversal];
-                currentCowsArray[HigherEndOfPairsForReversal] = t;
+                int t = beginningCowsArray[LowerEndOfPairsForReversal];
+                beginningCowsArray[LowerEndOfPairsForReversal] = beginningCowsArray[HigherEndOfPairsForReversal];
+                beginningCowsArray[HigherEndOfPairsForReversal] = t;
                 LowerEndOfPairsForReversal++;
                 HigherEndOfPairsForReversal--;
             }
         }
-        for (int i = 0; i < totalCows; i++) afterRoundOneCowsArray[i] = currentCowsArray[i];
+        for (int i = 0; i < totalCows; i++) currentRowArrays[i] = beginningCowsArray[i];
 
         int[] returnArray = new int[totalCows];
         for (int i = 0; i < totalCows; i++) returnArray[i] = i + 1;
         while (repeatTimes > 0) {
             if (repeatTimes % 2 == 1) {
-                returnArray = applyOneRoundPosition(returnArray, afterRoundOneCowsArray);
+                returnArray = applyOneRoundPosition(returnArray, currentRowArrays);
             }
             repeatTimes /= 2;
-            if (repeatTimes > 0) afterRoundOneCowsArray = applyOneRoundPosition(afterRoundOneCowsArray, afterRoundOneCowsArray);
+            if (repeatTimes > 0) currentRowArrays = applyOneRoundPosition(currentRowArrays, currentRowArrays);
         }
         for (int val : returnArray) pw.println(val);
         pw.close();
