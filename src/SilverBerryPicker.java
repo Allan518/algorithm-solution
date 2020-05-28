@@ -1,7 +1,5 @@
 import java.io.*;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class SilverBerryPicker {
 
@@ -26,7 +24,7 @@ public class SilverBerryPicker {
         System.out.println(Arrays.toString(berryNumberAtTree));
 
         int largestNumberOfBerryObtainedByBessie = 0;
-        int currentBerryNumberAtSmallerBasket = 0;
+        int[] remainingberryNumberAtTree = new int[totalTreeN];
         for( int berryNumberAtSmallestBasket = 1;  berryNumberAtSmallestBasket<= maxBerriesAtTree; berryNumberAtSmallestBasket++ ){
             int basketFilled = 0;
             for( int i = 0; i < totalTreeN; i++){
@@ -39,13 +37,15 @@ public class SilverBerryPicker {
                 largestNumberOfBerryObtainedByBessie = Math.max( largestNumberOfBerryObtainedByBessie, berryNumberAtSmallestBasket* ( totalBasketK/2));
                 continue;
             }
-            currentBerryNumberAtSmallerBasket = berryNumberAtSmallestBasket;
-//            Arrays.sort(berryNumberAtTree, new Comparator<int, int>(){
-//                            public int compare(int a, int b){
-//                                return a - b;
-//                            }
-//                        }
-//                    );
+            for( int i = 0 ; i < totalTreeN; i++){
+                remainingberryNumberAtTree[i]  = berryNumberAtTree[i] % berryNumberAtSmallestBasket;
+            }
+            Arrays.sort(remainingberryNumberAtTree);
+            int berriesForBessie = berryNumberAtSmallestBasket*(basketFilled - totalBasketK/2);
+            for( int i = totalTreeN -1; i >= 0 && (totalTreeN -i ) <= totalBasketK - basketFilled ; i--  ){
+                    berriesForBessie += remainingberryNumberAtTree[i];
+            }
+            largestNumberOfBerryObtainedByBessie = Math.max(largestNumberOfBerryObtainedByBessie, berriesForBessie);
         }
         System.out.println(largestNumberOfBerryObtainedByBessie);
         bufferedWriter.println(largestNumberOfBerryObtainedByBessie);
