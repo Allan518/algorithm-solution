@@ -7,20 +7,19 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class WormHole {
-static int MAX_N = 12;
+    static int MAX_N = 12;
 
-    static int[] X = new int[MAX_N+1];
-    static int[] Y = new int[MAX_N+1];
+    static int[] X = new int[MAX_N + 1];
+    static int[] Y = new int[MAX_N + 1];
     static int N;
-    static int[] partner = new int[MAX_N+1];
-    static int[] next_on_right = new int[MAX_N+1];
+    static int[] partner = new int[MAX_N + 1];
+    static int[] next_on_right = new int[MAX_N + 1];
 
-    static boolean cycle_exists()
-    {
-        for (int start=1; start<=N; start++) {
+    static boolean cycle_exists() {
+        for (int start = 1; start <= N; start++) {
             // does there exist a cylce starting from start
             int pos = start;
-            for (int count=0; count<N; count++)
+            for (int count = 0; count < N; count++)
                 pos = next_on_right[partner[pos]];
             if (pos != 0) return true;
         }
@@ -28,12 +27,11 @@ static int MAX_N = 12;
     }
 
     // count all solutions
-    static int solve()
-    {
+    static int solve() {
         // find first unpaired wormhole
         System.out.print("inside solve\t");
-        int i, total=0;
-        for (i=1; i<=N; i++) {
+        int i, total = 0;
+        for (i = 1; i <= N; i++) {
             System.out.print("i = " + i + "\t");
             if (partner[i] == 0) {
                 break;
@@ -45,15 +43,14 @@ static int MAX_N = 12;
             if (cycle_exists()) {
                 System.out.println("all paired! RETURN 1");
                 return 1;
-            }
-            else{
+            } else {
                 System.out.println("all paired! RETURN 0");
                 return 0;
             }
         }
 
         // try pairing i with all possible other wormholes j
-        for (int j=i+1; j<=N; j++)
+        for (int j = i + 1; j <= N; j++)
             if (partner[j] == 0) {
                 // try pairing i & j, let recursion continue to
                 // generate the rest of the solution
@@ -75,18 +72,18 @@ static int MAX_N = 12;
         BufferedReader br = new BufferedReader(new FileReader("wormhole.in"));
         PrintWriter printWriter = new PrintWriter(new FileWriter("wormhole.out"));
         StringTokenizer stringTokenizer = new StringTokenizer(br.readLine());
-        N = Integer.parseInt( stringTokenizer.nextToken() );
-        for( int i = 0 ; i < N; i ++){
+        N = Integer.parseInt(stringTokenizer.nextToken());
+        for (int i = 0; i < N; i++) {
             stringTokenizer = new StringTokenizer(br.readLine());
-            X[i] = Integer.parseInt(stringTokenizer.nextToken());
-            Y[i] = Integer.parseInt(stringTokenizer.nextToken());
+            X[i + 1] = Integer.parseInt(stringTokenizer.nextToken());
+            Y[i + 1] = Integer.parseInt(stringTokenizer.nextToken());
         }
 
-        for (int i=1; i<=N; i++) // set next_on_right[i]...
-            for (int j=1; j<=N; j++)
+        for (int i = 1; i <= N; i++) // set next_on_right[i]...
+            for (int j = 1; j <= N; j++)
                 if (X[j] > X[i] && Y[i] == Y[j]) // j right of i...
                     if (next_on_right[i] == 0 ||
-                            X[j]-X[i] < X[next_on_right[i]]-X[i])
+                            X[j] - X[i] < X[next_on_right[i]] - X[i])
                         next_on_right[i] = j;
 
         int result = solve();
