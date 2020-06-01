@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.StringTokenizer;
 import java.util.logging.FileHandler;
 
-public class CowGrazingPattern {
+public class CowGrazingPatternRecursive {
     static int[][] matrix = new int[5][5];
     static int totalBarren;
 
