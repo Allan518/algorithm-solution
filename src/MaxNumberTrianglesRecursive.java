@@ -9,7 +9,7 @@ https://jvonk.github.io/usaco/2018/10/04/numtri.html
 import java.io.*;
 import java.util.*;
 
-public class MaxNumberTriangles {
+public class MaxNumberTrianglesRecursive {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new FileReader("numtri.in"));
         PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("numtri.out")));
