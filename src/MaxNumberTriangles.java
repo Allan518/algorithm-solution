@@ -21,9 +21,7 @@ public class MaxNumberTriangles {
             for (int j = 0; line.hasMoreTokens(); j++) {
                 triangle[i][j] = Integer.parseInt(line.nextToken());
                 results[i][j] = -1;
-//                if(triangle[i][j]>max) max=triangle[i][j];
             }
-//            total+=max;
         }
         out.println(findLongest(triangle, 0, 0, results, N));
         br.close();
