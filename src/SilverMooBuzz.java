@@ -6,7 +6,6 @@ public class SilverMooBuzz {
 
         BufferedReader br = new BufferedReader(new FileReader("moobuzz.in"));
         PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("moobuzz.out")));
-
         StringTokenizer stringTokenizer = new StringTokenizer(br.readLine());
         int inputSequence = Integer.parseInt(stringTokenizer.nextToken());
         int[] mapArray = {1, 2, 4, 7, 8, 11, 13, 14 };
