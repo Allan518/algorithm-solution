@@ -11,6 +11,11 @@ public class SocialDistancingByStringSplit {
         int minGap = stallCount;
 
         String[] distArray = stallString.split("1", -1);
+
+        for( int i = 0; i < distArray.length; i++){
+            System.out.println(distArray[i].length() + "\t" + (distArray[i].length() + 1 )/3 + "\t" + (distArray[i].length() + 1 )/2  + "\t" + distArray[i]);
+        }
+        System.out.println("end");
         if( distArray.length == 1){
             minGap = stallCount -1;
         }else if( distArray.length == 2){
@@ -51,13 +56,15 @@ public class SocialDistancingByStringSplit {
             if ((maxGaps[1]  + 1 )/ 3 > (maxGaps[0] + 1 )/ 2) {
                 minGap = Math.min(minGap, ( maxGaps[1] + 1) / 3);
             } else {
-                minGap = Math.min(minGap, (maxGaps[0]  + 1 )/ 2);
+                if( boundaryArray[1] > minGap ){
+                    minGap = Math.min(minGap, (maxGaps[1]  + 1 )/ 2);
+                }else{
+                    minGap = Math.min(minGap, (maxGaps[0]  + 1 )/ 2);
+                }
             }
-
 
         }
 
-        System.out.println(minGap);
         printWriter.println(minGap);
         printWriter.flush();
     }
