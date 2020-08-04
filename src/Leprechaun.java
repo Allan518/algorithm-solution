@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.util.HashSet;
 import java.util.StringTokenizer;
 
-public class Leprechaun {
+public class Leprechaun { //allan
     static int[][] arr;
     static int maxSum = Integer.MIN_VALUE;
 
