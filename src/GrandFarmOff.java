@@ -26,12 +26,23 @@ public class GrandFarmOff {//L?
         long[][] cowMatrix = new long[N * 3][2];
         for (int i = 0; i < 3 * N; i++) {
             cowMatrix[i][0] = (a * valueAfterMod(i, 5, d) + b * valueAfterMod(i, 2, d) + c) % d;
-            cowMatrix[i][1] = (e * valueAfterMod(i, 5, h) + f * valueAfterMod(i, 2, d) + g) % h;
+            cowMatrix[i][1] = (e * valueAfterMod(i, 5, h) + f * valueAfterMod(i, 3, d) + g) % h;
         }
-        Arrays.sort(cowMatrix, Comparator.comparingLong(ar -> ar[1]));
+        //Arrays.sort(cowMatrix, Comparator.comparingLong(ar -> ar[1]));
+        Arrays.sort(cowMatrix, new Comparator<long[]>() {
+            @Override
+            public int compare(long[] o1, long[] o2) {
+                if( o1[1] < o2[1] || ( o1[1] == o2[1] && o1[0] > o2[0])){
+                    return 1;
+                }
+                else {
+                    return -1;
+                }
+            }
+        });
 
         long result = 0;
-        for( int i = 2*N ; i < 3*N; i++){
+        for( int i = 0 ; i < N; i++){
             result += cowMatrix[i][0];
         }
         System.out.println(result%M);
@@ -40,7 +51,7 @@ public class GrandFarmOff {//L?
 
     static long valueAfterMod(long cowIndex, long powerNumber, long modNumber) {
         long result = 1;
-        for (int i = 0; i < powerNumber; i++) {
+        for (int i = 1; i <= powerNumber; i++) {
             result = (result * cowIndex) % modNumber;
         }
         return result;
