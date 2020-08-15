@@ -26,7 +26,7 @@ public class GrandFarmOff {//L?
         long[][] cowMatrix = new long[N * 3][2];
         for (int i = 0; i < 3 * N; i++) {
             cowMatrix[i][0] = (a * valueAfterMod(i, 5, d) + b * valueAfterMod(i, 2, d) + c) % d;
-            cowMatrix[i][1] = (e * valueAfterMod(i, 5, h) + f * valueAfterMod(i, 3, d) + g) % h;
+            cowMatrix[i][1] = (e * valueAfterMod(i, 5, h) + f * valueAfterMod(i, 3, h) + g) % h;
         }
         //Arrays.sort(cowMatrix, Comparator.comparingLong(ar -> ar[1]));
         Arrays.sort(cowMatrix, new Comparator<long[]>() {
