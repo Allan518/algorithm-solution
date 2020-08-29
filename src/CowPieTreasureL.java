@@ -27,37 +27,31 @@ public class CowPieTreasureL {
         }
         long start = System.currentTimeMillis();
         System.out.println(getMaxGold(rows, cols -1 ));
-        long end = System.currentTimeMillis();
-        System.out.println("total time " + ( end - start ) + " ms");
-
     }
 
     static int getMaxGold(int i, int j){
-        System.out.println("inside " + i + "," + j +"; " );
-        if(maxGoldArray[i][j] == 0  ) {
-            int result = 0;
-            if (j > 0) {
-                if (i >= 1 && i <= rows) {
-                    result = Integer.MIN_VALUE;
-                    if (i < rows) {
-                        result = Math.max(result, getMaxGold(i + 1, j - 1));
-                    }
-                    if (i > 1) {
-                        result = Math.max(result, getMaxGold(i - 1, j - 1));
-                    }
-                    result = Math.max(result, getMaxGold(i, j - 1));
-                    result += matrix[i][j];
-                }
-            System.out.println("return " + i + "," + j +"; " );
-            } else {
-                System.out.println("directly return " + i + "," + j + "; ");
-                result = matrix[i][j];
-            }
-            maxGoldArray[i][j] = result;
-        }else {
-            System.out.println("directly return " + i + "," + j + "; ");
+        if(maxGoldArray[i][j] != 0 ){   // if change != to > , performance horrible; but if use > 0 || < 0, the performance is good, not sure why yet
+            return maxGoldArray[i][j];
         }
-        return maxGoldArray[i][j];
+        int result = 0;
+        if ( j > 0 ) {
+            if ( i >=1 && i <= rows ) {
+                result = Integer.MIN_VALUE;
+                if ( i < rows ) {
+                    result = Math.max(result, getMaxGold( i+1, j-1));
+                }
+                if (i > 1) {
+                    result = Math.max( result, getMaxGold(i-1, j-1));
+                }
+                result = Math.max(result, getMaxGold(i, j-1));
+                result += matrix[i][j];
+           }
+        }
+        else {
+            result = matrix[i][j];
+        }
+        maxGoldArray[i][j] = result;
+        return result;
     }
 }
 
