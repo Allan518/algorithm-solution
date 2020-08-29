@@ -33,28 +33,31 @@ public class CowPieTreasureL {
     }
 
     static int getMaxGold(int i, int j){
-        if(maxGoldArray[i][j] > 0  ){
-            return maxGoldArray[i][j];
-        }
-        int result = 0;
-        if ( j > 0 && i != 1 ) {
-            if ( i >=1 && i <= rows ) {
-                result = Integer.MIN_VALUE;
-                if ( i < rows ) {
-                    result = Math.max(result, getMaxGold( i+1, j-1));
+        System.out.println("inside " + i + "," + j +"; " );
+        if(maxGoldArray[i][j] == 0  ) {
+            int result = 0;
+            if (j > 0) {
+                if (i >= 1 && i <= rows) {
+                    result = Integer.MIN_VALUE;
+                    if (i < rows) {
+                        result = Math.max(result, getMaxGold(i + 1, j - 1));
+                    }
+                    if (i > 1) {
+                        result = Math.max(result, getMaxGold(i - 1, j - 1));
+                    }
+                    result = Math.max(result, getMaxGold(i, j - 1));
+                    result += matrix[i][j];
                 }
-                if (i > 1) {
-                    result = Math.max( result, getMaxGold(i-1, j-1));
-                }
-                result = Math.max(result, getMaxGold(i, j-1));
-                result += matrix[i][j];
-           }
+            System.out.println("return " + i + "," + j +"; " );
+            } else {
+                System.out.println("directly return " + i + "," + j + "; ");
+                result = matrix[i][j];
+            }
+            maxGoldArray[i][j] = result;
+        }else {
+            System.out.println("directly return " + i + "," + j + "; ");
         }
-        else {
-            result = matrix[i][j];
-        }
-        maxGoldArray[i][j] = result;
-        return result;
+        return maxGoldArray[i][j];
     }
 }
 
