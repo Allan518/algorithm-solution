@@ -25,7 +25,11 @@ public class CowPieTreasureL {
                 }
             }
         }
+        long start = System.currentTimeMillis();
         System.out.println(getMaxGold(rows, cols -1 ));
+        long end = System.currentTimeMillis();
+        System.out.println("total time " + ( end - start ) + " ms");
+
     }
 
     static int getMaxGold(int i, int j){
