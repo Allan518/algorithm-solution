@@ -37,13 +37,21 @@ public class CowPieTreasureL {
             return maxGoldArray[i][j];
         }
         int result = 0;
-        if ( i >= 1 && i <= rows ){
-            if( j == 0 ){
-                result = matrix[i][j];
-            }
-            else{
-                result = matrix[i][j] + Math.max(getMaxGold(i, j-1), Math.max(getMaxGold(i-1, j-1), getMaxGold(i+1, j-1)));
-            }
+        if ( j > 0 && i != 1 ) {
+            if ( i >=1 && i <= rows ) {
+                result = Integer.MIN_VALUE;
+                if ( i < rows ) {
+                    result = Math.max(result, getMaxGold( i+1, j-1));
+                }
+                if (i > 1) {
+                    result = Math.max( result, getMaxGold(i-1, j-1));
+                }
+                result = Math.max(result, getMaxGold(i, j-1));
+                result += matrix[i][j];
+           }
+        }
+        else {
+            result = matrix[i][j];
         }
         maxGoldArray[i][j] = result;
         return result;
