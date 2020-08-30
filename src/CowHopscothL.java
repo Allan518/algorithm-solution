@@ -24,7 +24,7 @@ public class CowHopscothL {
                 matrix[i][j] = Integer.parseInt(stringTokenizer.nextToken());
             }
         }
-        System.out.println(getTotalSteps(rows-1, cols -1)% 1000000007);
+        System.out.println(getTotalSteps(rows-1, cols -1));
     }
 
     static long getTotalSteps(int r, int c ){
@@ -35,11 +35,7 @@ public class CowHopscothL {
             for( int i = 0; i < r ; i++){
                 for( int j = 0; j < c  ; j++){
                     if( matrix[r][c] != matrix[i][j] ) {
-                        long addon = getTotalSteps(i, j);
-                        if( addon < 0 ) {
-                            addon = 0;
-                        }
-                        stepMatrix[r][c] +=  addon ;
+                        stepMatrix[r][c] +=  getTotalSteps(i, j) ;
                     }
                 }
             }
