@@ -20,23 +20,31 @@ public class MilkFactory {
             in[inbound]++;
         }
 
-        int sinkNumber = 0;
+        int answer = 0;
+        int sink = 0;
         for (int i = 1; i <= N; i++) {
-            int sink = 0;
             if (out[i] == 0) {
                 if (sink == 0) {
                     sink = 1;
-                    sinkNumber = i;
+                    answer = i;
                 } else {
-                    sinkNumber = -1;
+                    answer = -1;
                     break;
                 }
             }
         }
 
+/*
+        int answer = -1;
+        for (int i=1; i<=N; i++) {
+            if (out[i]==0 && answer != -1 ) { answer = -1; break; } // found two sinks -- bad!
+            if (out[i]==0) answer = i;  // found first sink; remember it
+        }
+*/
+
         PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter("factory.out")));
-        System.out.println(sinkNumber);
-        printWriter.println(sinkNumber);
+        System.out.println(answer);
+        printWriter.println(answer);
         printWriter.flush();
     }
 
