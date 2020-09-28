@@ -23,6 +23,7 @@ public class Race {
         PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter("race.out")));
         for (int i = 0; i < N; i++) {
             printWriter.println(solve(speed[i]));
+            System.out.println(solve(speed[i]));
         }
         printWriter.flush();
     }
@@ -39,11 +40,16 @@ public class Race {
             }
             else{
                 timer++;
-                ldistance += speed++;
+                ldistance += speed;
             }
-            if (speed > lowSpeed) {
-                timer++;
-                rdistance += --speed;
+            if( ldistance + rdistance >= K ) {
+                return timer;
+            }
+            else{
+                if (speed >= lowSpeed) {
+                    timer++;
+                    rdistance += speed;
+                }
             }
         }
     }
