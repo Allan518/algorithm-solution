@@ -10,6 +10,7 @@ public class CowEvolution {
     static Set<String> allSets;
     static String[] allArray;
     static String[][] inputString;
+    static int uniqueSets;
 
     public static void main(String[] args) throws Exception {
         BufferedReader bufferedReader = new BufferedReader(new FileReader("evolution.in"));
@@ -29,26 +30,29 @@ public class CowEvolution {
             }
         }
 
-        int uniqueSets = allSets.size();
+        uniqueSets = allSets.size();
         allArray = new String[uniqueSets];
         allSets.toArray(allArray);
 
         PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter("evolution.out")));
-        boolean result = true;
+        if( isProper()){
+            printWriter.print("yes");
+        }
+        else{
+            printWriter.print("no");
+        }
+        printWriter.flush();
+    }
+
+    static boolean isProper(){
         for( int i = 0; i < uniqueSets; i++){
             for( int j = 1; j< uniqueSets && j != i; j++){
                 if( isCrossed(i, j)){
-                    result = false;
-                    printWriter.println("no");
-                    System.out.println("no");
-                    printWriter.flush();
-                    exit(0);
+                    return  false;
                 }
             }
         }
-        printWriter.println("yes");
-        System.out.println("yes");
-        printWriter.flush();
+        return true;
     }
 
 
