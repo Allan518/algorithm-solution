@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.StringTokenizer;
-
+//http://usaco.org/index.php?page=viewproblem2&cpid=832
 
 public class MilkingOrder {  //todo
     static int N = 0;
