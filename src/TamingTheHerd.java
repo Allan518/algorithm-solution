@@ -29,12 +29,6 @@ public class TamingTheHerd {
                     if( days[ i - j] == -1 ) {
                         days[ i - j] = -2;
                     }
-                    else{
-                        if( days[ i - j] !=  days[i] -j ){
-                        //    outputStr = "-1";
-                         //   break;
-                        }
-                    }
                 }
                 days[i] = -2;  //confirmed not breakout
             }
