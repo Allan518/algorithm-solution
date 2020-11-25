@@ -42,6 +42,14 @@ public class LearningByExample {
     }
 
     static int countSpotedCow(int start, int end) {
+        /*
+        ooxx
+        oxxo
+        xxoo
+        xoox
+        oxox
+        xoxo
+         */
         int result = 0;
         if (end < A) {
             //pass
