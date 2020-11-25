@@ -5,7 +5,7 @@ import java.util.StringTokenizer;
 public class BessieGetEven {
     static int N = 0;
     static int matrix[][];
-    static HashMap<String, ArrayList<Integer>> rawMap;
+    static HashMap<String, int[]> rawMap;
 
     public static void main(String[] args) throws Exception {
         String fileName = "geteven";
@@ -20,12 +20,12 @@ public class BessieGetEven {
         for (int i = 0; i < N; i++) {
             stringTokenizer = new StringTokenizer(bufferedReader.readLine());
             String character = stringTokenizer.nextToken();
-            ArrayList<Integer> arrayList = rawMap.get(character);
-            if (arrayList == null) {
-                arrayList = new ArrayList<>();
+            int[] evenOddArray = rawMap.get(character);
+            if (evenOddArray == null) {
+                evenOddArray = new int[2];
             }
-            arrayList.add(Integer.parseInt(stringTokenizer.nextToken()));
-            rawMap.put(character, arrayList);
+            evenOddArray[Math.abs((Integer.parseInt(stringTokenizer.nextToken()))) % 2]++;
+            rawMap.put(character, evenOddArray);
         }
         int B = 0;
         int E = 0;
@@ -35,22 +35,23 @@ public class BessieGetEven {
         int O = 0;
         int M = 0;
         int counter = 0;
-        for (int i = 0; i < rawMap.get("B").size(); i++) {
-            for (int j = 0; j < rawMap.get("E").size(); j++) {
-                for (int k = 0; k < rawMap.get("S").size(); k++) {
-                    for (int m = 0; m < rawMap.get("I").size(); m++) {
-                        for (int l = 0; l < rawMap.get("G").size(); l++) {
-                            for (int n = 0; n < rawMap.get("O").size(); n++) {
-                                for (int o = 0; o < rawMap.get("M").size(); o++) {
-                                    B = rawMap.get("B").get(i);
-                                    E = rawMap.get("E").get(j);
-                                    S = rawMap.get("S").get(k);
-                                    I = rawMap.get("I").get(m);
-                                    G = rawMap.get("G").get(l);
-                                    O = rawMap.get("O").get(n);
-                                    M = rawMap.get("M").get(o);
-                                    if( (B +I) % 2 == 0 || (G + O + E + S ) %2 == 0 || M %2 == 0){
-                                        counter++;
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                for (int k = 0; k < 2; k++) {
+                    for (int m = 0; m < 2; m++) {
+                        for (int l = 0; l < 2; l++) {
+                            for (int n = 0; n < 2; n++) {
+                                for (int o = 0; o < 2; o++) {
+                                    B = i;
+                                    E = j;
+                                    S = k;
+                                    I = m;
+                                    G = l;
+                                    O = n;
+                                    M = o;
+                                    if (M % 2 == 0 || (B + I) % 2 == 0 || (G + O + E + S) % 2 == 0) {
+                                        counter += rawMap.get("B")[i] * rawMap.get("E")[j] * rawMap.get("S")[k] *
+                                                rawMap.get("I")[m] * rawMap.get("G")[l] * rawMap.get("O")[n] * rawMap.get("M")[o];
                                     }
                                 }
                             }
