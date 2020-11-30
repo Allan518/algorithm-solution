@@ -1,7 +1,3 @@
-// Arup Guha
-// 5/13/2018
-// Solution to USACO 2015 January Silver Problem: Stampede
-
 import java.util.*;
 import java.io.*;
 
