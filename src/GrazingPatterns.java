@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.StringTokenizer;
+//http://www.usaco.org/index.php?page=viewproblem2&cpid=105
 
 public class GrazingPatterns {
     static int nBarrens = 0;
