@@ -17,7 +17,6 @@ public class BreedAssignment {//recursive
         nCows = Integer.parseInt(stringTokenizer.nextToken());
         kRelations = Integer.parseInt(stringTokenizer.nextToken());
 
-
         matrix = new int[nCows+1][nCows+1];
         for(int[] row : matrix){
             Arrays.fill(row, -1);
@@ -38,7 +37,6 @@ public class BreedAssignment {//recursive
         breedArray = new int[nCows + 1];
         int count = checkTheIndexCowMatching(1);
         System.out.println(count);
-
         PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter(fileName + ".out")));
         printWriter.println(count);
         printWriter.flush();
@@ -62,7 +60,6 @@ public class BreedAssignment {//recursive
             if (!isConflicting) {
                 breedArray[i] = j;
                 count += checkTheIndexCowMatching(i + 1);
-                breedArray[i] = 0;
             }
         }
         return count;
